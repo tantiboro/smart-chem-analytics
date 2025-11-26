@@ -2,9 +2,13 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install system tools needed for some scientific packages
+# Install system dependencies
+# RDKit needs libxrender1, libxext6, and libsm6 for drawing molecule images
 RUN apt-get update && apt-get install -y \
     build-essential \
+    libxrender1 \
+    libxext6 \
+    libsm6 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python deps
